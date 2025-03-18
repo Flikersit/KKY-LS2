@@ -25,4 +25,4 @@ title('Simulation Results: \phi_{1} and \phi_{2}');
 legend('\phi_{1}', '\phi_{2}');
 grid on;
 
-saveas(gcf, 'step_response.svg');
+saveas(gcf, 'output.eps', 'epsc');
