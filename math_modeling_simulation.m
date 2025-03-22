@@ -83,3 +83,49 @@ title('Step Response of the System P_{2}');
 xlabel('Time(s)');
 ylabel('Value');
 saveas(gcf, 'step_response_p2.eps', 'epsc');
+
+%% Nyquist diagramm for system P_{1}
+
+figure;
+nyquist(p1);
+title("Nyquist plot for P_{1} tf");
+saveas(gcf, 'nyquist_plot_p1.eps', 'epsc')
+
+%% Nyquist diagramm for system P_{2}
+
+figure;
+nyquist(p2);
+title("Nyquist plot for P_{2} tf");
+saveas(gcf, 'nyquist_plot_p2.eps', 'epsc')
+
+%% Antiresonance for P_{1} system
+omega = 1;
+A = 1;
+T = 100;
+dt = 0.01;
+t = 0:dt:T;
+u = A * sin(omega*t);
+[y, t_out] = lsim(p1, u, t);
+plot(t_out, y, 'b', t, u, 'r--')
+legend('Output signal', 'Input signal')
+xlabel('Time (s)')
+ylabel('Amplitude')
+title('Antiresonance')
+grid on
+saveas(gcf, 'antirezonance_plot_p1.eps', 'epsc')
+
+%% Resonance for P_{1} system
+omega = 2;
+A = 1;
+T = 100;
+dt = 0.01;
+t = 0:dt:T;
+u = A * sin(omega*t);
+[y, t_out] = lsim(p1, u, t);
+plot(t_out, y, 'b', t, u, 'r--')
+legend('Output signal', 'Input signal')
+xlabel('Time (s)')
+ylabel('Amplitude')
+title('Resonance')
+grid on
+saveas(gcf, 'Rezonance_plot_p1.eps', 'epsc')
